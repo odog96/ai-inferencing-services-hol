@@ -1,0 +1,184 @@
+What's NewCloudera Docs
+What's New
+Major features and updates for the Cloudera AI data service.
+
+January 29, 2025
+Release notes and fixed issues for version 2.0.46-b302.
+New Features / Improvements
+
+Migrated Cloudera AI Workbench, AI Registry, and Cloudera AI Inference service images to
+ chainguard to address CVEs.
+Added APIv2 support for Enhanced Group Sync.
+Added support to create AMPs (Cloudera Accelerators for Machine Learning
+ Projects) using APIv2. Previously, this option was available only using UI. 
+Added support for H100 GPU instances for Cloudera AI Inference service on Azure.
+Added support for AKS workload identity.
+Added support for AWS M7a, M7i, C7a, C7i, R7a, R7i instance families.
+Added support for Cloudera AI Inference service on EU Control Plane.
+Added support for EKS 1.30.
+Added support for AKS 1.30.
+Hugging Face support (Technical Preview): You can now import text-generating language
+ models from Hugging Face and deploy them on Cloudera AI Inference service.
+Added profiles for HuggingFace Models and multi-modal models in the Model Hub
+ catalog.
+Updated existing model manifests in the catalog after upgrading the NIM version in
+ Cloudera AI Inference service.
+Enhanced error messages related to model import failure in the Model Hub UI.
+Carried enhancements in AI Registry to ensure that multi-modals can be supported. 
+Added runtime support for Llama 3.2 11B and 90B Vision Language Model NIMs to ensure
+ that they can be deployed using AI Inference. Only model profiles optimized for the H100
+ GPU are supported for these two models in this release.
+Llama 3 NIM is no longer supported since we now have both Llama 3.1 and Llama 3.2.
+Added support for Diagnostic Bundles in Cloudera AI Inference service.
+Upgraded text-generating and embedding NIMs.
+Added Code Sample functionality for endpoints deployed using Cloudera AI Inference
+ service.
+Model endpoint replica events can now be viewed on the Model Endpoint details UI.You can
+ now add numerous docker credentials using UI or API which can be used to enable Cloudera
+ AI to fetch custom ML Runtimes from a secure repository. For more information, see Add Docker registry credentials and
+ certificates.
+
+
+Fixed Issues
+
+Previously, some Cloudera AI Inference service clusters did not have the 'creationDate'
+ field. This field is now added.(DSE-38817)
+Previously, the deletion of backup for older workspaces was failing. This issue is now
+ resolved. (DSE-41031)
+Previously, deleting a workbench backup created by a deleted user displayed an error.
+ This issue is now resolved. (DSE-41052)
+Multiple UI improvements are made both in the Create, Read, Update, and Delete
+ operations of Cloudera AI Inference service and while deploying or editing a model
+ endpoint.
+The model_name field is now displayed instead of model_id in the Endpoint Details UI.
+ (DSE-38937)
+Previously, the NIM model profile environment variable was only assigned for LLMs. Now
+ support for Model Profile override is added for Embedding and Reranker NIMs.
+ (DSE-40508)
+Previously, there was an issue with rendering of existing instance type in the "Edit
+ Endpoint" UI. This issue is now resolved. (DSE-40636)
+Validated all node group (instance type) selection from UI. (DSE-40754)
+Previously, NGC manifest components were missing from the download. This issue is now
+ resolved. (DSE-41055)
+The Create ML Serving application now enables the public load balancer. (DSE-41305)
+The Instance Type field in the Edit Model Endpoint UI is no longer mandatory.
+ (DSE-41278)
+Added force delete option to delete the Cloudera AI Inference service using UI.
+ (DSE-41035)
+The Cloudera AI Inference service UI now displays optimization profile details.
+ (DSE-40927)
+You can now create, download, and delete log archives for Cloudera AI Inference service.
+ (DSE-40921)
+The Test Model UI now fails gracefully when the replica is scaled down to zero for a
+ model deployed using Cloudera AI Inference service. (DSE-40957)
+Previously, the Storage initializer had the wrong task values. This issue is now
+ resolved. (DSE-41058)
+Enabled storage initializer to now handle more than two directories for NIM artifacts.
+ (DSE-40986)
+Removed Llama 3 runtimes. (DSE-40956)
+Addressed SQL injection issue in AI Registry that allowed non-authorized but
+ authenticated users to perform Create, Read, Update, and Delete operations on AI
+ Registrys metadata tables. (DSE-41542)
+
+
+
+
+November 21, 2024
+Release notes and fixed issues for version 2.0.46-b238.
+New Features / Improvements
+
+Model Hub Enhancement: The model size is now shown in the user-friendly format
+ both in the Model Hub UI and Cloudera AI Registry UI.
+Cloudera AI Inference service Enhancement: New AI Inference Services
+ menu item is added to the left-navigation pane of the Cloudera AI UI to manage the
+ lifecycle of Cloudera AI Inference service using UI. For more information, see Using Cloudera AI Inference service. 
+Added Spark 3.5 ML Runtime Addon
+Product and features named:
+Clouder Machine Learning (CML) is renamed to Cloudera AI. 
+Cloudera Machine Learning Model Registry is renamed to Cloudera
+ AI Registry.
+Cloudera Machine Learning Workspace is renamed to Cloudera AI
+ Workbench.
+Cloudera Applied Machine Learning Prototypes and Accelerators
+ for ML Projects is renamed to Cloudera Accelerators for Machine
+ Learning Projects.
+
+
+
+Fixed Issues
+
+CVE fixes - This release includes numerous security fixes for critical and high Common
+ Vulnerability and Exposures (CVE).
+Previously, the public and private settings did not carry forward after the AI Registry
+ upgrade. This issue is now resolved. (DSE-36799)
+Enhanced the error message that was displayed when importing a model from Model Hub to
+ Registered Models. (DSE-39897)
+Generic (vLLM) NIM profile deployment was returning an empty GPU list in the UI. This
+ issue is now resolved. (DSE-39913)
+Previously, public cloud CDP CLI was not showing the instance type's GPU count. This
+ issue is now resolved. (DSE-39539)
+Cloudera AI v2 API deployed application did not inherit user-level environment variables
+ and site-level environment variables. This issue has been solved, and now an application
+ created using APIv2 does not only inherit project-level environment variables but also
+ user-level environment variables and site-level environment variables. (DSE-37611)
+Previously, scheduled jobs skipped job runs and did not specify the error. Now, the
+ skipped jobs runs have improved exit code to distinguish them from failed jobs.
+ (DSE-39976)
+Previously, the Next buttons on the Site Administration page did not work. This issue is
+ now resolved. (DSE-34133).
+Previously, restarting the application using the Cloudera AI v2 API did not inherit
+ account application-level environment variables. This issue is now resolved.
+ (DSE-39894)
+Users can now view the existing applications in the Cloudera AI UI even if the creation
+ of a new application is disabled. (DSE-39980)
+Previously, Python logging did not work with PBJ Runtimes. This issue is now resolved.
+ (DSE-39929)
+Previously, reloading the session page would result in an incorrect state where the PBJ
+ session's editor cell could appear green even if it is in a processing state (executing
+ some commands). With this fix, an accurate representation of the processing state is
+ displayed even after a refresh. (DSE-40049)
+
+
+
+
+October 10, 2024
+Release notes and fixed issues for version 2.0.46-b210.
+New Features / Improvements
+
+Model Hub: Model Hub is now a fully supported feature. Model Hub is a catalog of
+ top-performing models LLM and generative AI models. You can now easily import the models
+ listed in the Model Hub into the Cloudera AI Registry and then deploy it using the Cloudera AI Inference service. For more information, see Using Model Hub.
+Cloudera AI Inference service Enhancements: 
+Added support for NVIDIA's NIM profiles requiring for the L40S GPU models. 
+Made auto-scale configuration which is rendered in UI during the creation of model
+  endpoint user-friendly. (DSE-38845) 
+Optimized Cloudera AI UI service to become more responsive. 
+User actionable error messages are now rendered in Cloudera AI service UI.
+ For more information, see Using Cloudera AI Inference service.
+  
+
+
+
+Fixed Issues
+
+Addressed scaling issues with web services to support high active user concurrency
+ (DSE-39597).
+CVE fixes - This release includes numerous security fixes for critical and high Common
+ Vulnerability and Exposures (CVE).
+Fixed CORS issue to ensure that DELETE/PATCH V1 API can be used from within a workbench.
+ (DSE-39357)
+Made the NGC service key used to download Nvidias optimized models more restrictive.
+ (DSE-39475)
+Previously, users were unable to copy the model-id from Cloudera AI UI. This issue is
+ now resolved. (DSE-38889)
+Authorization issues related to the listing of Cloudera AI applications have been
+ addressed. (DSE-39386)
+Fixed an issue to ensure that instance type validation is correctly carried out during
+ the creation of a new model endpoint. (DSE-39634)
+Added required validation rules for the creation of a new model endpoint.
+ (DSE-38412)
+Addressed an issue around empty model list during navigation from registry models to
+ deployment of models. (DSE-39634)
+
+
+

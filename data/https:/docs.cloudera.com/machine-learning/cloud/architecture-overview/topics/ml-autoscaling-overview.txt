@@ -1,0 +1,44 @@
+Autoscaling Workloads with KubernetesCloudera Docs
+Autoscaling Workloads with Kubernetes
+Kubernetes dynamically resizes clusters by using the Kubernetes Cluster
+Autoscaler (on Amazon EKS) or cluster-autoscaler (on Azure). The
+ cluster autoscaler changes the desired capacity of an autoscaling group to expand or contract a
+ cluster based on pod resource requests. 
+Scaling Up
+The primary trigger for scaling up (or expanding) an autoscaling group is failure by the
+  Kubernetes pod scheduler to find a node that meets the pods resource requirements. In
+  Cloudera AI, if the scheduler cannot find a node to schedule an engine pod
+  because of insufficient CPU or memory, the engine pod will be in pending state. When the
+  autoscaler notices this situation, it will change the desired capacity of the autoscaling
+  group (CPU or GPU) to provision a new node in the cluster. As soon as the new node is ready,
+  the scheduler will place the session or engine pod there. In addition to the engine pod,
+  certain Cloudera AI daemonset pods will also be scheduled on the new node. 
+The time taken to schedule an engine pod on a new node depends on the amount of time the
+  autoscaler takes to add a new node into the cluster, plus time taken to pull the engines
+  Docker image to the new node. 
+
+Scaling Down
+A cluster is scaled down by the autoscaler by removing a node, when the resource utilization
+  on the given node is less than a pre-defined threshold, provided the node does not have any
+  non-evictable pods running on it. This threshold is currently set to 20% CPU utilization. That
+  is, a node is removed if the following criteria are met: 
+The node does not have non-evictable pods
+The node's CPU utilization is less than 20%
+The number of active nodes in the autoscaling group is more than the configured minimum
+capacity
+
+It is possible that certain pods might be moved from the evicted node to some other node
+  during the down-scaling process.
+noteBy default, on AWS and Azure, autoscaling groups can include a maximum of 30 nodes. 
+  If more nodes are needed, contact your Cloudera representative.
+
+Limitations on Azure
+On Azure, there are some specific limitations to how autoscaling works. 
+CPU nodes cannot scale down to zero. You can only have one or more CPU nodes.
+  
+Autoscaling down is sometimes blocked by Azure services. You can check the cluster
+ autoscaler logs to see if this is occurring.
+
+
+
+Autoscale GroupsA Cloudera AI workbench or cluster consists of three different  autoscaling groups: infra, cpu and gpu. These groups scale independently of one another. Critical and Non-critical PodsThe pods running various Cloudera AI services and jobs broadly fall  into critical and non-critical types.Parent topic: Architecture Overview

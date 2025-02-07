@@ -1,0 +1,42 @@
+Cloudera AI ArchitectureCloudera Docs
+Cloudera AI Architecture
+Once a Cloudera AI Workbench is provisioned, you can start using Cloudera AI for your end-to-end Machine Learning workflow. 
+Cloudera AI is a three-tier application that consists of a presentation tier, an application tier
+and a data tier. 
+Web tier
+Cloudera AI is a web application that provides a UI that simplifies the action of managing
+workloads and resources for data scientists. It offers users a convenient way to deploy
+and scale their analytical pipeline and collaborate with their colleagues in a secure
+compartmentalized environment. 
+Cloudera AI communicates using HTTPS, Websocket, and gRPC. External communication is limited to
+HTTP and Websocket for the web UI and APIs. In-cluster service-to-service communication
+uses gRPC and is encrypted and mutually authenticated using TLS (Transport Layer
+Security). 
+
+Application tier
+The application tier uses an actual set of workloads that users are running. These
+workloads are isolated in Kubernetes namespaces and run on specially marked compute
+nodes. Kubernetes/node level auto scaling is used to expand/contract the cluster size
+based on user demand.
+User code gets baked into Docker images via a set of Source-to-Image pods (S2I), which
+includes a managing server, a queue for builds, a registry that serves the images for
+Docker, a git server, and the builders that actually perform the image building.
+Traditionally these images used the host machine's docker, but Cloudera AI switched to
+in-container builds for security and compliance on some platforms. 
+
+Data tier
+Cloudera AI uses an internal Postgres database for persisting metadata of user workloads such as
+Sessions, Jobs, Models and Applications, which runs as a pod and is backed by a
+persistent volume, using the cloud-provider's block storage offering (for example, EBS
+for AWS and Premium_LRS for Azure). 
+Cloudera AI uses an NFS server, i.e. a POSIX-compliant file system, for storing users project
+files, which include user code, libraries installed into a Session, and small data
+files. For AWS, Cloudera AI creates an Elastic File System (EFS) file system when provisioning
+the workbench for storing project files. For Azure, users can either provide an NFS
+volume created in Azure NetApp Files or an external NFS server when provisioning Cloudera AI Workbench for storing project files. This NFS server is supplied to the Cloudera AI Workbenches
+as Kubernetes Persistent Volumes (PVs). Persistent Volume Claims (PVCs) are set up
+per-namespace, and each user gets their own namespace - thus each users view of the NFS
+server is limited to that exposed by the Cloudera Private Cloud. 
+
+
+Parent topic: Architecture Overview

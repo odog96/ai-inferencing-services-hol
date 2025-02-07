@@ -1,0 +1,42 @@
+Limitations on AzureCloudera Docs
+Limitations on Azure
+This section lists some resource limits that Cloudera AI and Azure impose on workloads running
+ in Cloudera AI Workbenches. 
+
+
+There is no ability to grant or revoke remote access (via Kubeconfig) to specific users.
+ Users with the MLAdmin role in the environment can download a Kubeconfig file. The
+ Kubeconfig file will continue to allow access even if the MLAdmin role is later
+ revoked.
+
+
+Support is limited to regions that provide AKS. Also, customers should check availability
+ of Azure Files NFS or Azure NetApp Files and GPU instance types in their intended region.
+ See Supported Azure regions for more information.
+
+Data is not encrypted in transit to Azure Files NFS or Azure NetApp Files or other NFS
+  systems, so make sure to implement policies to ensure security at the network level.
+Each Cloudera AI Workbench requires a separate subnet. For more information on this issue, see
+Use kubenet networking with your own IP address ranges in Azure
+Kubernetes Service (AKS).
+
+Heavy AKS activity can cause default API rate limits to trigger, causing throttling and
+  eventually failures for AKS clusters. For some examples, see AKS issue
+ 1187 and AKS issue
+1413. 
+When you provision an Azure Kubernetes (AKS) cluster, a Standard load balancer is
+  provisioned by default. The Standard load balancer always provisions a public IP for egress
+  traffic, communication with the Kubernetes control plane, and backwards compatibility.
+  Cloudera software does not use this public IP directly, or expose anything on it. For more
+  information, see: Use a public Standard Load Balancer in Azure Kubernetes Service
+ (AKS)
+The following Azure Policy add-on for AKS has a default policy that causes workbench
+  upgrades to fail. To avoid this problem, the Kubernetes clusters should not allow
+ container privilege escalation policy should not be enabled. For more
+  information on AKS policies, see Azure Policy built-in definitions for Azure Kubernetes
+ Service.
+The workbench Backup and Restore feature, which on Azure is only available through the Cloudera Data Platform
+  CLI, does not perform a backup of NFS.
+
+
+Related informationSupported Azure regions

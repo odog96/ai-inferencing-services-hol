@@ -1,0 +1,44 @@
+Network Planning for Cloudera AI on AzureCloudera Docs
+Network Planning for Cloudera AI on Azure
+Before attempting to deploy your Azure virtual network and set up your Azure Environment
+  and Cloudera AI Workbenches, you should plan the network.
+As an example, a minimum architecture to support two Cloudera AI Workbenches would comprise the
+following: 
+An Azure virtual network. Cloudera AI can use an existing virtual network if
+  available.
+One subnet dedicated to the Azure NetApp Files service, if this service is utilized. Azure
+  FIles NFS does not need a dedicated subnet. 
+One subnet for each Cloudera AI Workbench.
+
+Keep the following considerations in mind when planning your network: 
+Each Cloudera AI Workbench requires one subnet in the virtual network.
+Plan the CIDR addresses for each subnet so that the ranges do not overlap.
+Each subnet should use a /26 CIDR. This should accommodate a maximum of 30 worker nodes as
+  well as 4 infrastructure nodes for Cloudera AI.
+To use GPUs, create a virtual network with /25 CIDR subnets to accommodate a maximum of 30
+  GPU nodes. If you created a /26 CIDR network originally, and then subsequently need to add GPU
+  support, you must create a new network with /25 CIDR subnets. Subnets cannot be resized. 
+Azure Files NFS v4.1 (first preference) and Azure NetApp Files v3 (second preference) are
+  the recommended NFS services for use with Cloudera AI on Azure.
+Subnets may not use the following reserved CIDR blocks: 10.0.0.0/16 or 10.244.0.0/16 
+Even if private IP addresses are used for the Cloudera AI service, each AKS cluster provisions a
+  public IP for egress traffic, communication with the Kubernetes control plane, and backwards
+  compatibility. For more information, see Use a public Standard Load Balancer in Azure Kubernetes Service
+(AKS).
+
+In a Single Resource Group setup in Azure, the entire Cloudera Data Platform stack is supposed to use the
+  resource group provided by the customer, and not create any new resource groups. However, note
+  that Azure will automatically create new resource groups for Azure managed resources, such as a
+  new resource group for AKS compute worker nodes.
+Each Cloudera AI Workbench cluster must not share any subnets or routing tables with any other Cloudera Data Platform experience
+  or AKS cluster.
+After provisioning a workbench, do not remove firewall rules to allow inbound and outbound
+  access.
+Installations must comply with firewall requirements set by cloud providers at all times.
+  Ensure that ports required by the provider are not closed. For example, Kubernetes services
+  have requirements documented in Use Azure Firewall to protect Azure Kubernetes Service (AKS)
+Deployments. Also, for information on repositories that must be accessible to set up
+  workbenches, see Outbound network access destinations for Azure.
+
+
+Related informationUse a public Standard Load Balancer in Azure Kubernetes Service (AKS)Use Azure Firewall to protect Azure Kubernetes Service (AKS) clustersOutbound network access destinations for Azure
