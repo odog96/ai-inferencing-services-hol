@@ -1,4 +1,4 @@
+import subprocess
+
 # Install the requirements
-
-
-!pip3 install -r requirements.txt
+subprocess.run(['pip3', 'install', '-r', 'requirements.txt'], check=True)
