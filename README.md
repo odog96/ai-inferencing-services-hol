@@ -51,7 +51,7 @@ In this section, you will:
 * Understand reranking model capabilities
 * Practice API integration for model usage
 
-<u>**Step by step guide**</u>
+**Step by step guide**
 
 #### Jupyter Notebook
 
@@ -120,7 +120,6 @@ Configure applicaiton as shown below. **Ensure you use a prefix with your userna
 ![cai page](./images/create-app.png)
 
 
-
 ### Step 4: Copilot (8 minutes)
 
 * Learn how to use your favorite model to super charge you coding.
@@ -136,14 +135,62 @@ Next, select the settings gear icon on the top right, as shown. Here you can con
 
 ![cai page](./images/co-pilot-llm.png)
 
+
+
 Open the `03-copilot-demo.ipynb` notebook.
 
+1. run 1st cell. It has a bug in it. The error should come up. Go to the chat window and type something like "fix this bug for me". Then click on the drop down at the right side of the blue button. This includes the cell content into your prompt. **Important** ensure that you first select the contents within the cell. 
+
+
+![cai page](./images/copilot4.png)
+
+
+2. Next, you'll see the response. The response will contain an explanation as well as a new code snippet. You can see that you can replace you existing code, using the icon shown.
+
+
+![cai page](./images/copilot5.png)
+
+
+Try running this code block to see if it works! We're going to ry 
+
+3. Move on to the next section of jupyter notebook
+
+Copy and paste the next cell into the prompt. What do you see?
+
+*/generate A Python notebook that teaches how to use sets*
+
+hint: wait a few minutes come back and look at your local folder.
+
+4. Next we're going to use AI magic extension. This gives us the ability to use multiple models within one session. Additionally we can use prompts and other tools in line within the Jupiter notebook. Run the following 2 cells. As you can see you have a lot of choice of models. In addition you have choice on how you run those models.
+
+5. Lastly we'll look at 2 functions /learn and /ask. We'll use these to help us understand what the previous application code did behind the scenes. 
 
 ### Step 5: Vision Language Model Use Case (5 minutes)
 
 * Deploy and work with Vision Language Models
 * Understand endpoint configuration and switching
 * Practical applications of VLM in real-world scenarios
+
+To start this section, let's go to the application we built earlier. Hit the 3 dots on the top right, as shown:
+
+![cai page](./images/new-application.png)
+
+Next, hit applications, details, then select 'settings' 
+
+![cai page](./images/new-application-settings.png)
+
+Next, we're going to reconfigure the application to point to a new script. Behind the scenese we're preparing to interact with a new, vision model. Use configuratinos shown. 
+
+**Important Details**
+
+- you don't need to change the domain name.
+- update the app name
+- carefully observe the path to the script.
+
+finally hit "upadate application" button. 
+
+Once you're done, go into the app and start to use. Look in your spread sheet for sample prompts and images (works better with online images) to feed to the chatbot. 
+
 
 ### Step 6: Traditional Model Performance Comparison (5 minutes)
 
