@@ -4,11 +4,14 @@ import os
 from openai import OpenAI
 import httpx
 
+import json
+
+
 #configure default environment variables
 
-os.environ['CDP_TOKEN'] = "<TOKEN>"
-os.environ['OPENAI_API_BASE'] = "<ENDPOINT_URL>"
-os.environ['OPENAI_MODEL_NAME'] = "<MODEL_NAME>"
+os.environ['CDP_TOKEN'] = json.load(open("/tmp/jwt"))["access_token"]
+#os.environ['OPENAI_API_BASE'] = "<ENDPOINT_URL>"
+#os.environ['OPENAI_MODEL_NAME'] = "<MODEL_NAME>"
 
 
 if "CDP_TOKEN" not in os.environ:
@@ -92,13 +95,46 @@ def predict(message, history):
 
 
 with gr.Blocks() as demo:
-            gr.Markdown("<center><h1>Multi-modal chatbot</h1></center>")
-            gr.Markdown("<center><h3>Powered by Llama 3.2 in AI Inference</h3></center>")
-            chatbot = gr.ChatInterface(
-                fn=predict,
-                examples=[{"text": "Is it correct to standardize your training and test data after you split or to split your dataset then standardize your training and test data?", "files": []}],
-                multimodal=True,
-                type="messages"
-            )
+    gr.Markdown("<center><h1>Multi-modal chatbot</h1></center>")
+    gr.Markdown("<center><h3>Powered by Llama 3.2 in AI Inference</h3></center>")
+    
+    chatbot = gr.Chatbot()
+    msg = gr.Textbox(placeholder="Enter your message here...")
+    upload = gr.File(file_count="multiple")
+    
+    def user(user_message, files, history):
+        if history is None:
+            history = []
+        message = {"text": user_message, "files": [f.name for f in files] if files else []}
+        # Convert to the format Chatbot expects (list of tuples)
+        history.append((user_message, None))
+        return "", None, history
+    
+    def bot(history):
+        # Convert history to the format your predict function expects
+        formatted_history = [
+            {"role": "user" if i % 2 == 0 else "assistant", "content": msg}
+            for i, (msg, _) in enumerate(history[:-1])
+        ]
+        # Get the last user message
+        last_message = history[-1][0]
+        bot_message = None
+        for response in predict({"text": last_message, "files": []}, formatted_history):
+            bot_message = response
+            history[-1] = (history[-1][0], bot_message)
+            yield history
 
-demo.launch(server_port=8100)
+    msg.submit(user, [msg, upload, chatbot], [msg, upload, chatbot]).then(
+        bot, chatbot, chatbot
+    )
+
+    example = gr.Examples(
+        examples=[
+            ["Is it correct to standardize your training and test data after you split or to split your dataset then standardize your training and test data?", None]
+        ],
+        inputs=[msg, upload]
+    )
+
+# Enable the queue when launching
+demo.queue().launch(server_port=8100)
+

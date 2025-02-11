@@ -103,22 +103,40 @@ Next follow notebook instructions
 
 #### Rag application... reimagined. 
 
-We've seen chatbots with rag agents, We'll look at an application, we're we can update the model used on the fly. 
+We've seen chatbots with rag agents, We'll look at an application, where we can update the model used on the fly. Have 2 concurrent converstations with 2 models. 
+Then we'll see a leveling up of our traditional rag architecture.
 
-Lets start by launching the application. 
+![cai page](./images/rag-pipeline-with-reranking.png)
+
+So you've probably seen the traditional rag pipeline, where we use a similarity approach to identify best chunks to retrieve. We improve on this architecture to add a re-ranking to 're-rank' most relavent chunks to be sent to the LLM. 
+
+Let's now launch the application!
+
+Make sure you're in the context of your project, and go to 'applications'
+![cai page](./images/go-to-application.png)
+
+Configure applicaiton as shown below. **Ensure you use a prefix with your username to ensure all participants have a unique domain**
+
+![cai page](./images/create-app.png)
 
 
-### Step 4: Copilot Integration (8 minutes)
 
-* Learn to integrate Copilot with CAII models
-* Understand common integration challenges and their solutions
-* Explore best practices for model recognition
+### Step 4: Copilot (8 minutes)
 
-**Connecting a model to your Notebook**
+* Learn how to use your favorite model to super charge you coding.
 
-**Usage**
+Let's start by going back to your session. In case the session expired, start a new one with same configuration as in previous step.
+To access copilot featurs click on the icon at the bottom of the left part of the screen, as seen below.
 
+![cai page](./images/co-pilot-help-menu.png)
 
+Here you get some useful commands for interacting with copilot.
+
+Next, select the settings gear icon on the top right, as shown. Here you can configure your embedding model as well as your language model.
+
+![cai page](./images/co-pilot-llm.png)
+
+Open the `03-copilot-demo.ipynb` notebook.
 
 
 ### Step 5: Vision Language Model Use Case (5 minutes)
@@ -137,11 +155,4 @@ Lets start by launching the application.
 
 * Learn about LLM evaluation methodologies
 * Understand key benchmarking metrics
-* Practice performance measurement and analysis
 
-## Getting Started
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/odog96/ai-inferencing-services-hol.git
-   cd ai-inferencing-services-hol

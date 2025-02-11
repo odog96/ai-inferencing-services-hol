@@ -23,3 +23,11 @@ tasks:
     kernel: python3
     cpu: 2
     memory: 12
+    
+  - type: run_session
+    name: load local data
+    script: vector_db/html_to_text.py
+    short_summary: Install Dependencies
+    kernel: python3
+    cpu: 2
+    memory: 12
