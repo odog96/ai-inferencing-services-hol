@@ -1,7 +1,0 @@
-Architecture OverviewCloudera Docs
-Architecture Overview
-
-Cloudera AI is a Data Service on the Cloudera Data Platform. Residing on the Cloudera Data Platform helps Cloudera AI integrate with and leverage other Data Services residing on the
-platform, for example Cloudera Data Engineering and Cloudera Data Warehouse. 
-
-ProvisioningCloudera AI utilizes the Cloudera Data Platform Control Plane to manage Data Services so you can provision and delete Cloudera AI Workbench. Cloudera Data Platform Control Plane leverages cloud native capabilities to dynamically access CPU, memory, and GPU resources along with cloud-managed Kubernetes (K8s) to provide the infrastructure. Cloudera AI ArchitectureOnce a Cloudera AI Workbench is provisioned, you can start using Cloudera AI for your end-to-end Machine Learning workflow. ML RuntimesML Runtimes are responsible for running data science workloads and intermediating access to the underlying cluster. Spark on KubernetesIn Cloudera AI, multiple Spark versions are available through Runtime Addons. Data Scientists can select the version of Spark to be configured for any workload. Cloudera AI configures the Runtime container and mounts all of the dependencies.Autoscaling Workloads with KubernetesKubernetes dynamically resizes clusters by using the Kubernetes Cluster Autoscaler (on Amazon EKS) or cluster-autoscaler (on Azure). The  cluster autoscaler changes the desired capacity of an autoscaling group to expand or contract a  cluster based on pod resource requests. 

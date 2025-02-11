@@ -1,8 +1,0 @@
-Network Planning for Cloudera AI on AWSCloudera Docs
-Network Planning for Cloudera AI on AWS
-Before attempting to deploy your AWS virtual network and set up your AWS Environment and
-  Cloudera AI Workbenches, you should plan the network.
-Setting up Cloudera AI for AWS is comprehensively covered in the Getting Started guide. See AWS
- account requirements for more information.
-
-Related informationAWS account requirements
