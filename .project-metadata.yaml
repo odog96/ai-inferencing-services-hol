@@ -10,10 +10,10 @@ prototype_version: 1.0
 #     default: "mlops-aw-dl"
 #     description: "datalake connection name"
 runtimes: 
-  - editor: JupyterLab
+  - editor: PBJ Workbench
     kernel: Python 3.10
     edition: Nvidia GPU
-    version: 2025.01
+    version: "2024.10"
     
 tasks:
   - type: run_session
