@@ -1,7 +1,7 @@
 name: AI Inference Services Hands On Lab
 
 entries:
-  - title: Hands on Lab mlops
+  - title: Hands on Lab AI Inference Services
     label: mlops-hol-se
     short_description: |
       This AMP is used for the Cloudera AI Hands on Labs at Cloudera Elevate 26, and focuses on Cloudera AI's through AI Inference Services to deliver secure and scalable enterprise inferencing.
