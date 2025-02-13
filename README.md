@@ -101,79 +101,11 @@ Rince and repeat - repeat the same steps for the Deepseek R1 model. Use the next
 
 Next follow notebook instructions
 
-#### Rag application... reimagined. 
-
-We've seen chatbots with rag agents, We'll look at an application, where we can update the model used on the fly. Have 2 concurrent converstations with 2 models. 
-Then we'll see a leveling up of our traditional rag architecture.
-
-![cai page](./images/rag-pipeline-with-reranking.png)
-
-So you've probably seen the traditional rag pipeline, where we use a similarity approach to identify best chunks to retrieve. We improve on this architecture to add a re-ranking to 're-rank' most relavent chunks to be sent to the LLM. 
-
-Let's now launch the application!
-
-Make sure you're in the context of your project, and go to 'applications'
-![cai page](./images/go-to-application.png)
-
-Configure applicaiton as shown below. **Ensure you use a prefix with your username to ensure all participants have a unique domain**
-
-![cai page](./images/create-app.png)
-
-
-### Step 4: Copilot (8 minutes)
-
-* Learn how to use your favorite model to super charge you coding.
-
-Let's start by going back to your session. In case the session expired, start a new one with same configuration as in previous step.
-To access copilot featurs click on the icon at the bottom of the left part of the screen, as seen below.
-
-![cai page](./images/co-pilot-help-menu.png)
-
-Here you get some useful commands for interacting with copilot.
-
-Next, select the settings gear icon on the top right, as shown. Here you can configure your embedding model as well as your language model.
-
-![cai page](./images/co-pilot-llm.png)
-
-
-
-Open the `03-copilot-demo.ipynb` notebook.
-
-1. run 1st cell. It has a bug in it. The error should come up. Go to the chat window and type something like "fix this bug for me". Then click on the drop down at the right side of the blue button. This includes the cell content into your prompt. **Important** ensure that you first select the contents within the cell. 
-
-
-![cai page](./images/copilot4.png)
-
-
-2. Next, you'll see the response. The response will contain an explanation as well as a new code snippet. You can see that you can replace you existing code, using the icon shown.
-
-
-![cai page](./images/copilot5.png)
-
-
-Try running this code block to see if it works! We're going to ry 
-
-3. Move on to the next section of jupyter notebook
-
-Copy and paste the next cell into the prompt. What do you see?
-
-*/generate A Python notebook that teaches how to use sets*
-
-hint: wait a few minutes come back and look at your local folder.
-
-4. Next we're going to use AI magic extension. This gives us the ability to use multiple models within one session. Additionally we can use prompts and other tools in line within the Jupiter notebook. Run the following 2 cells. As you can see you have a lot of choice of models. In addition you have choice on how you run those models.
-
-5. Lastly we'll look at 2 functions /learn and /ask. We'll use these to help us understand what the previous application code did behind the scenes. 
-
 ### Step 5: Vision Language Model Use Case (5 minutes)
 
 * Deploy and work with Vision Language Models
 * Understand endpoint configuration and switching
 * Practical applications of VLM in real-world scenarios
-
-To start this section, let's go to the application we built earlier. Hit the 3 dots on the top right, as shown:
-
-![cai page](./images/new-application.png)
 
 Next, hit applications, details, then select 'settings' 
 
