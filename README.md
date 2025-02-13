@@ -37,7 +37,7 @@ This lab consists of 7 steps, with an estimated total duration of 60 minutes.
 
 For the first section, we'll be using a reprise demo. To guide you through the demo, please see folling link
 
-[SKO Reprise](https://docs.google.com/document/d/1TDZ6FCo7IKzX_jLWehNsa-VRDI6rq-kkTqz4wCdOuAY/edit?tab=t.0#heading=h.ag17zvp9gvi7)
+[SKO Reprise][(https://docs.google.com/document/d/1TDZ6FCo7IKzX_jLWehNsa-VRDI6rq-kkTqz4wCdOuAY/edit?tab=t.0#heading=h.ag17zvp9gvi7](https://app.getreprise.com/edit4/preview/1yQ8zRX/))
 
 ### Step 2: JupyterLab and API Integration (20 minutes)
 
