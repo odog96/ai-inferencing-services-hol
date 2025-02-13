@@ -93,9 +93,22 @@ Create session. Pick python 3.10 kernal and Jupyterlab editor.
 
 Open the `02-model-connect.ipynb` notebook.
 
-Feed the following variables:
+Feed the following variables into cells below:
+
+**for our llama 8b**
+
+`model_name = "meta/llama-3.1-8b-instruct" `
+
+`base_url = "https://ai-inference.ainf-cdp.vayb-xokg.cloudera.site/namespaces/serving-default/endpoints/test-model-llama-8b-v2/v1"`
 
 ![cai page](./images/model-end-point-details.png)
+
+**for our deepseek r1**
+
+`ds_model_name = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"`
+
+`ds_base_url = "https://ai-inference.ainf-cdp.vayb-xokg.cloudera.site/namespaces/serving-default/endpoints/deepseek-r1-distill-llama-8b/openai/v1" `
+
 
 Rince and repeat - repeat the same steps for the Deepseek R1 model. Use the next cell, and feed `ds_base_url` and `ds_model_name`.
 
