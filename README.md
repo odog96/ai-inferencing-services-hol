@@ -122,7 +122,7 @@ Next follow notebook instructions
 
 Next, hit applications, details, then select 'settings' 
 
-![cai page](./images/new-application-settings.png)
+![cai page](./images/application-start.png)
 
 Next, we're going to reconfigure the application to point to a new script. Behind the scenese we're preparing to interact with a new, vision model. Use configuratinos shown. 
 
