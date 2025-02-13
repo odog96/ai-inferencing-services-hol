@@ -124,7 +124,13 @@ Next, hit applications, details, then select 'settings'
 
 ![cai page](./images/application-start.png)
 
-Next, we're going to reconfigure the application to point to a new script. Behind the scenese we're preparing to interact with a new, vision model. Use configuratinos shown. 
+Next, we're going to configure the application to point to a our script. Behind the scenese we're preparing to interact with a new, vision model. Use configuratinos shown. 
+
+![cai page](./images/vision-app-config.png)
+
+here is a sample question
+
+`Can you describe the following : https://en.wikipedia.org/wiki/Multivariate_normal_distribution#/media/File:MultivariateNormal.png`
 
 **Important Details**
 
