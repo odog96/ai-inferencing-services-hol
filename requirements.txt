@@ -1,10 +1,30 @@
-openai
-httpx
+# Core API and HTTP libraries
+openai>=1.0.0
+httpx>=0.24.0,<0.28.0
 typing-extensions>=4.5.0
-langchain-openai
-torch==2.0.1
-transformers==4.34.0
-pinecone-client==2.2.4
-sentence-transformers==2.2.2
-huggingface-hub==0.16.4
-gradio==3.44.4
+
+# PyTorch and ML libraries (updated for compatibility)
+torch>=2.0.1,<2.3.0
+transformers>=4.34.0,<4.45.0
+sentence-transformers>=2.2.2,<3.0.0
+huggingface-hub>=0.16.4,<0.25.0
+
+# UI and gradio (updated for stability)
+gradio>=4.0.0,<5.0.0
+
+# Inference API
+open-inference-openapi>=2.0.0
+
+# JupyterLab and LSP fixes (addressing the chat backend issue)
+jupyterlab>=4.0.0,<5.0.0
+jupyterlab-lsp>=5.0.0
+jupyter-lsp>=2.0.0
+jedi-language-server>=0.40.0
+
+# Additional dependencies for CML compatibility
+pydantic>=2.0.0,<3.0.0
+pydantic-core
+fastapi>=0.100.0
+
+# Async client fixes (addresses the httpx proxy issue from logs)
+httpcore>=0.17.0,<2.0.0
