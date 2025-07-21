@@ -143,15 +143,29 @@ client = None
 
 
 def load_token(token_path: str = "/tmp/jwt") -> str:
-    """Load CDP token from file"""
+    """Load CDP token from file with fallback"""
     try:
+        # Try to read from JWT file first
         with open(token_path, 'r') as f:
-            token_data = json.load(f)
+            content = f.read().strip()
+            
+            # Check if it's HTML (error page)
+            if content.startswith('<html>') or content.startswith('<!DOCTYPE'):
+                print("JWT file contains HTML error, using fallback token")
+                raise ValueError("JWT file contains HTML error")
+                
+            # Try to parse as JSON
+            token_data = json.loads(content)
+            print("✅ Using JWT token from file")
             return token_data["access_token"]
+            
     except Exception as e:
-        # For demo purposes, return a placeholder token
-        # In production, this should be properly configured
-        return "your-auth-token-here"
+        print(f"⚠️ JWT file error: {e}")
+        print("🔄 Using hardcoded fallback token")
+        
+        # Your hardcoded token as fallback
+        fallback_token = "eyJraWQiOiIzYzhlNzA3OTEyZmI0NTA1ODE3NzE3YzMyOTU4MmQwMTFjYjlmNTAwIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJvemFyYXRlIiwiYXVkIjoiaHR0cHM6Ly9kZS55bGN1LWF0bWkuY2xvdWRlcmEuc2l0ZSIsImlzcyI6Imh0dHBzOi8vY29uc29sZWF1dGguY2RwLmNsb3VkZXJhLmNvbS84YTFlMTVjZC0wNGMyLTQ4YWEtOGYzNS1iNGE4YzExOTk3ZDMiLCJncm91cHMiOiJjZHBfZGVtb3Nfd29ya2Vyc193dyBjZHBfZGVtby1hd3MtcHJpbSBfY19kZl9kZXZlbG9wXzkxMTQ2M2MgX2NfbWxfYWRtaW5zXzViNTQ3ZDI2IF9jX21sX2J1c2luZXNzX3VzZXJzXzc3ODkxZjJlIF9jX2RmX3ZpZXdfNmY1OWU5ZjMgX2NfZGZfYWRtaW5pc3Rlcl85MTE0NjNjIF9jX21sX3VzZXJzXzc3ODkxZjJlIF9jX2RmX3ZpZXdfOTExNDYzYyBfY19tbF9idXNpbmVzc191c2Vyc182ZWUwZGI5MSBfY19kZl9wdWJsaXNoXzkxMTQ2M2MgX2NfZGZfdmlld185MTE0NjNjMCBfY19lbnZfYXNzaWduZWVzXzkxMTQ2M2MgX2NfcmFuZ2VyX2FkbWluc185MDZiMGJhIF9jX21sX3VzZXJzXzZmNTllOWYzIF9jX21sX3VzZXJzXzRkODNhZDdmIF9jX2Vudl9hc3NpZ25lZXNfOTA2YjBiYSBfY19kZl9kZXZlbG9wXzZmNTllOWYzIF9jX2RmX2FkbWluaXN0ZXJfNmY1OWU5ZjMgX2NfZGZfcHVibGlzaF82ZjU5ZTlmMyBfY19tbF91c2Vyc182ZWUwZGI5MSBfY19tbF9idXNpbmVzc191c2Vyc182ZjU5ZTlmMyBfY19tbF9idXNpbmVzc191c2Vyc185MTE0NjNjIF9jX21sX2FkbWluc183Nzg5MWYyZSBfY19lbnZfYXNzaWduZWVzXzZmNTllOWYzIF9jX3Jhbmdlcl9hZG1pbnNfNmY1OWU5ZjMgX2NfcmFuZ2VyX2FkbWluc185MTE0NjNjIF9jX2RlX3VzZXJzXzkxMTQ2M2MgX2NfbWxfdXNlcnNfOTExNDYzYyBfY19kZl9wcm9qZWN0X21lbWJlcl80MGRmZTU2OCBfY19kZl92aWV3XzZmNTllOWYzMCBfY19kZl9wcm9qZWN0X21lbWJlcl81NzVmODRmNyBfY19kZV91c2Vyc182ZjU5ZTlmMyIsImV4cCI6MTc1MzExNTgxNywidHlwZSI6InVzZXIiLCJnaXZlbl9uYW1lIjoiT2xpdmVyIiwiaWF0IjoxNzUzMTEyMjE3LCJmYW1pbHlfbmFtZSI6IlphcmF0ZSIsImVtYWlsIjoib3phcmF0ZUBjbG91ZGVyYS5jb20ifQ.hodrdbHGmPEdU4d-ZcZo5blNmrYdkkH43M1iwdQdNby7O0m3Bu-gDP6mFe508X_l6vk-4zCjmO1AJnVjc3qIEE38Vqp8HFsU_j831w_jK1k7IN_UFjzhYc8IADcSmWjazu3IAFL4wnEDT0M0uHCJVhIMY3g1QCiptTWOH6QQApDcSocK2FyOX4rTemIofkgo2-GxMKhsYsUMaIrCD-1hc3ZMRZQQ7dyl4LKK81pAmwC-4sVzbilaYC73jAXGCop7HskVmD6N5hCTYdUVBUq1lUoRPvjfWAoP3GfiDFvlFpaLEkrurIGCZnFdXQKEPXjhXzrqKBbt0YLI89nWtvq-WQ"
+        return fallback_token
 
 
 def initialize_client(base_url: str, model_name: str) -> Tuple[bool, str]:
