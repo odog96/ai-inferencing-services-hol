@@ -16,10 +16,10 @@ gradio>=4.0.0,<5.0.0
 open-inference-openapi>=2.0.0
 
 # JupyterLab and LSP fixes (addressing the chat backend issue)
-#jupyterlab>=4.0.0,<5.0.0
-#jupyterlab-lsp>=5.0.0
-#jupyter-lsp>=2.0.0
-#jedi-language-server>=0.40.0
+jupyterlab>=4.0.0,<5.0.0
+jupyterlab-lsp>=5.0.0
+jupyter-lsp>=2.0.0
+jedi-language-server>=0.40.0
 
 # Additional dependencies for CML compatibility
 pydantic>=2.0.0,<3.0.0
