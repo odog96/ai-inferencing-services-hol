@@ -18,7 +18,7 @@ Pillow>=10.0.0
 
 # UI
 #gradio>=4.8.0,<4.30.0
-gradio==5.39.0
+gradio
 
 # Data processing
 numpy>=1.24.0
